@@ -3,37 +3,86 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
+import React from "react";
+import InputWithButton from "@/components/ui/input-with-button"
+import { Input } from "@nextui-org/react"
+import { SearchIcon } from '@/components/ui/search-icon'
 
 export default function Home() {
   return (
     <>
-      <MaxWidthWrapper className="mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center">
-        <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50">
-          <p className="text-sm font-semibold text-gray-700">
-            Itt az entanarom.hu!
-          </p>
+      <MaxWidthWrapper className="mb-12 lg:mt-20 lg:flex items-center justify-center text-center">
+        <div className="lg:flex-1 p-2 order-last">
+          <div className='max-w-6xl'>
+            <div className='mt-8 flow-root lg:mt-0'>
+              <Image
+                src='/female-teacher-school-isolated-woman-with-chalkboard.png'
+                alt='teacher'
+                width={600}
+                height={600}
+                quality={100}
+                className="mx-auto max-w-xs md:max-w-sm lg:max-w-lg"
+              />
+            </div>
+          </div>
         </div>
-        <h1 className='max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'>
-          Chat with your{' '}
-          <span className='text-blue-600'>documents</span>{' '}
-          in seconds.
-        </h1>
-        <p className='mt-5 max-w-prose text-zinc-700 sm:text-lg'>
-          Quill allows you to have conversations with any
-          PDF document. Simply upload your file and start
-          asking questions right away.
-        </p>
-
-        <Link
-          className={buttonVariants({
-            size: 'lg',
-            className: 'mt-5',
-          })}
-          href='/dashboard'
-          target='_blank'>
-          Get started{' '}
-          <ArrowRight className='ml-2 h-5 w-5' />
-        </Link>
+        <div className="lg:flex-1 lg:px-6 lg:text-left">
+          {/* <div className="mx-auto mb-4 max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50">
+            <p className="text-sm font-semibold text-gray-700">
+              Itt az entanarom.hu!
+            </p>
+          </div> */}
+          <h1 className='max-w-4xl text-5xl md:flex-1 font-bold md:text-6xl lg:text-7xl'>
+            Találd meg a számodra{' '}
+            <span className='text-blue-600'>legjobb</span>{' '}
+            magántanárt.
+          </h1>
+          <p className='mt-5 md:flex-1 text-zinc-700 sm:text-lg'>
+            Quill allows you to have conversations with any
+            PDF document. Simply upload your file and start
+            asking questions right away.
+          </p>
+          <div className="flex items-center mt-10 max-w-lg mx-auto">
+            <div className="flex-1">
+              <Input type="search" classNames={{
+                input: [
+                  "bg-transparent",
+                  "text-black/90 dark:text-white/90",
+                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                ],
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-xl",
+                  "bg-default-100",
+                  "dark:bg-default/60",
+                  "backdrop-blur-xl",
+                  "backdrop-saturate-200",
+                  "hover:bg-default-200/70",
+                  "dark:hover:bg-default/70",
+                  "group-data-[focus=true]:bg-default-200/50",
+                  "dark:group-data-[focus=true]:bg-default/60",
+                  "!cursor-text",
+                ]
+              }}
+                label="Tantárgy keresése"
+                placeholder="(pl. Angol, Matematika, Történelem)"
+                startContent={
+                  <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+                }
+              />
+            </div>
+            <div className="mx-5">
+              <Link
+                className={buttonVariants({
+                  size: 'search'
+                })}
+                href='/dashboard'
+                target='_blank'>
+                Keresés
+              </Link>
+            </div>
+          </div>
+        </div>
       </MaxWidthWrapper>
 
       {/* value proposition section */}
@@ -51,23 +100,6 @@ export default function Home() {
             />
           </div>
 
-          <div>
-            <div className='mx-auto max-w-6xl px-6 lg:px-8'>
-              <div className='mt-16 flow-root sm:mt-24'>
-                <div className='-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4'>
-                  <Image
-                    src='/dashboard-preview.jpg'
-                    alt='product preview'
-                    width={1364}
-                    height={866}
-                    quality={100}
-                    className='rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10'
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div
             aria-hidden='true'
             className='pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80'>
@@ -82,29 +114,35 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Feature section */}
-      <div className='mx-auto mb-32 mt-32 max-w-5xl sm:mt-56'>
+      {/* Process section */}
+      <div className='mx-auto mb-20 mt-28 max-w-5xl sm:mt-40'>
         <div className='mb-12 px-6 lg:px-8'>
           <div className='mx-auto max-w-2xl sm:text-center'>
             <h2 className='mt-2 font-bold text-4xl text-gray-900 sm:text-5xl'>
-              Start chatting in minutes
+              Hogyan működik?
             </h2>
-            <p className='mt-4 text-lg text-gray-600'>
-              Chatting to your PDF files has never been
-              easier than with Quill.
-            </p>
           </div>
         </div>
 
         {/* steps */}
-        <ol className='my-8 mx-4 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0'>
+        <ol className='mt-8 mb-40 mx-4 space-y-4 pt-8 md:flex md:space-x-10 md:space-y-0'>
           <li className='md:flex-1'>
+            <div className="hidden md:block md:mb-4 max-w-lg">
+              <Image
+                src='/search.png'
+                alt='first step'
+                width={2000}
+                height={1333}
+                quality={100}
+                className=''
+              />
+            </div>
             <div className='flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4'>
               <span className='text-sm font-medium text-blue-600'>
-                Step 1
+                1. lépés
               </span>
               <span className='text-xl font-semibold'>
-                Sign up for an account
+                Keresd meg az elvárásadnak megfelelő tanárt.
               </span>
               <span className='mt-2 text-zinc-700'>
                 Either starting out with a free plan or
@@ -119,9 +157,19 @@ export default function Home() {
             </div>
           </li>
           <li className='md:flex-1'>
+            <div className="hidden md:block md:mb-4 max-w-lg">
+              <Image
+                src='/search.png'
+                alt='first step'
+                width={2000}
+                height={1333}
+                quality={100}
+                className=''
+              />
+            </div>
             <div className='flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4'>
               <span className='text-sm font-medium text-blue-600'>
-                Step 2
+                2. lépés
               </span>
               <span className='text-xl font-semibold'>
                 Upload your PDF file
@@ -133,9 +181,19 @@ export default function Home() {
             </div>
           </li>
           <li className='md:flex-1'>
+            <div className="hidden md:block md:mb-4 max-w-lg">
+              <Image
+                src='/search.png'
+                alt='first step'
+                width={2000}
+                height={1333}
+                quality={100}
+                className=''
+              />
+            </div>
             <div className='flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4'>
               <span className='text-sm font-medium text-blue-600'>
-                Step 3
+                3. lépés
               </span>
               <span className='text-xl font-semibold'>
                 Start asking questions
@@ -147,22 +205,14 @@ export default function Home() {
             </div>
           </li>
         </ol>
-
-        <div className='mx-auto max-w-6xl px-6 lg:px-8'>
-          <div className='mt-16 flow-root sm:mt-24'>
-            <div className='-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4'>
-              <Image
-                src='/file-upload-preview.jpg'
-                alt='uploading preview'
-                width={1419}
-                height={732}
-                quality={100}
-                className='rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10'
-              />
-            </div>
-          </div>
+      </div>
+      <div className='mx-auto pb-20 items-center md:px-0 px-6'>
+        <div className="bg-purple-950 py-8 md:min-h-72 rounded-2xl self-center">
+          <h2 className="font-bold text-zinc-100 text-center text-2xl md:text-3xl lg:text-5xl">Az első benyomás nagyon fontos.</h2>
+          <h2 className="text-zinc-100 mb-2 lg:mb-3 font-bold text-center text-3xl md:text-6xl lg:text-7xl">Mi ebben segítünk!</h2>
+          <p className="text-center text-zinc-200 text-lg sm:text-lg md:text-xl">Nézd meg tanáraink rövid bemutatkozó videóját és válassz!</p>
         </div>
       </div>
     </>
   )
-}
+} 

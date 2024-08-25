@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@kinde-oss/kinde-auth-nextjs": "^2.3.6",
+    "@material-tailwind/react": "^2.1.9",
+    "@nextui-org/input": "^2.2.4",
+    "@nextui-org/react": "^2.4.6",
+    "@prisma/client": "^5.18.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@tailwindcss/typography": "github:tailwindcss/typography",
     "class-variance-authority": "^0.7.0",
@@ -16,8 +21,11 @@
     "lucide-react": "^0.407.0",
     "next": "14.2.4",
     "node": "^22.4.0",
+    "prisma": "^5.18.0",
+    "radix-ui": "^1.0.1",
     "react": "^18",
     "react-dom": "^18",
+    "stripe": "^16.8.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-typography": "^3.1.0"
