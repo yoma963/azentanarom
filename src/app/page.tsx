@@ -1,3 +1,5 @@
+"use client"
+
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +9,7 @@ import React from "react";
 import InputWithButton from "@/components/ui/input-with-button"
 import { Input } from "@nextui-org/react"
 import { SearchIcon } from '@/components/ui/search-icon'
+import Typewriter from 'typewriter-effect';
 
 export default function Home() {
   return (
@@ -34,7 +37,20 @@ export default function Home() {
           </div> */}
           <h1 className='max-w-4xl text-5xl md:flex-1 font-bold md:text-6xl lg:text-7xl'>
             Találd meg a számodra{' '}
-            <span className='text-blue-600'>legjobb</span>{' '}
+            <span className="text-primary">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter.typeString('legjobb')
+                    .pauseFor(2500)
+                    .deleteAll()
+                    .pauseFor(1500)
+                    .typeString('legjobb')
+                    .start();
+                }}
+              />
+            </span>
+
+            {' '}
             magántanárt.
           </h1>
           <p className='mt-5 md:flex-1 text-zinc-700 sm:text-lg'>
@@ -90,7 +106,7 @@ export default function Home() {
         <div className='relative isolate'>
           <div
             aria-hidden='true'
-            className='pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80'>
+            className='pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 lg:-top-96'>
             <div
               style={{
                 clipPath:
@@ -102,7 +118,7 @@ export default function Home() {
 
           <div
             aria-hidden='true'
-            className='pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80'>
+            className='pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 lg:-top-96'>
             <div
               style={{
                 clipPath:
@@ -115,7 +131,7 @@ export default function Home() {
       </div>
 
       {/* Process section */}
-      <div className='mx-auto mb-20 mt-28 max-w-5xl sm:mt-40'>
+      <div className='mx-auto mb-20 mt-28 max-w-6xl sm:mt-40'>
         <div className='mb-12 px-6 lg:px-8'>
           <div className='mx-auto max-w-2xl sm:text-center'>
             <h2 className='mt-2 font-bold text-4xl text-gray-900 sm:text-5xl'>
@@ -125,14 +141,14 @@ export default function Home() {
         </div>
 
         {/* steps */}
-        <ol className='mt-8 mb-40 mx-4 space-y-4 pt-8 md:flex md:space-x-10 md:space-y-0'>
+        <ol className='mt-8 mb-40 mx-8 space-y-4 pt-8 md:flex md:space-x-10 md:space-y-0'>
           <li className='md:flex-1'>
             <div className="hidden md:block md:mb-4 max-w-lg">
               <Image
-                src='/search.png'
+                src='/web-search-concept-illustration.png'
                 alt='first step'
                 width={2000}
-                height={1333}
+                height={2000}
                 quality={100}
                 className=''
               />
@@ -159,10 +175,10 @@ export default function Home() {
           <li className='md:flex-1'>
             <div className="hidden md:block md:mb-4 max-w-lg">
               <Image
-                src='/search.png'
+                src='/typing-concept-illustration.png'
                 alt='first step'
                 width={2000}
-                height={1333}
+                height={2000}
                 quality={100}
                 className=''
               />
@@ -183,10 +199,10 @@ export default function Home() {
           <li className='md:flex-1'>
             <div className="hidden md:block md:mb-4 max-w-lg">
               <Image
-                src='/search.png'
+                src='/learning-languages-concept-illustration.png'
                 alt='first step'
                 width={2000}
-                height={1333}
+                height={2000}
                 quality={100}
                 className=''
               />
@@ -207,10 +223,10 @@ export default function Home() {
         </ol>
       </div>
       <div className='mx-auto pb-20 items-center md:px-0 px-6'>
-        <div className="bg-purple-950 py-8 md:min-h-72 rounded-2xl self-center">
-          <h2 className="font-bold text-zinc-100 text-center text-2xl md:text-3xl lg:text-5xl">Az első benyomás nagyon fontos.</h2>
-          <h2 className="text-zinc-100 mb-2 lg:mb-3 font-bold text-center text-3xl md:text-6xl lg:text-7xl">Mi ebben segítünk!</h2>
-          <p className="text-center text-zinc-200 text-lg sm:text-lg md:text-xl">Nézd meg tanáraink rövid bemutatkozó videóját és válassz!</p>
+        <div className="bg-purple-800 py-8 md:min-h-72 lg:min-h-80 rounded-2xl md:rounded-none grid gridx-col content-center">
+          <h2 className="font-bold text-zinc-200 text-center text-3xl md:text-5xl lg:text-6xl">Az első benyomás nagyon fontos.</h2>
+          <h2 className="text-warning mb-2 lg:mb-3 font-bold text-center text-4xl md:text-6xl lg:text-7xl">Mi ebben segítünk!</h2>
+          <p className="text-center text-zinc-300 text-lg sm:text-lg md:text-xl">Nézd meg tanáraink rövid bemutatkozó videóját és válassz!</p>
         </div>
       </div>
     </>

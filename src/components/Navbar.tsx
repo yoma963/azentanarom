@@ -24,40 +24,43 @@ const Navbar = () => {
             <span>azentanarom.hu</span>
           </Link>
 
-          <MobileNav isAuth={!!user} />
+          <MobileNav isAuth={!user} />
 
           <div className='hidden items-center space-x-4 sm:flex'>
             <>
               <Link
-                href='/pricing'
+                href='/tanaraink'
                 className={buttonVariants({
                   variant: 'ghost',
                   size: 'sm',
                 })}>
-                Árak
+                Tanáraink
               </Link>
-              <Link
-                href='/tanarok'
-                className={buttonVariants({
-                  variant: 'ghost',
-                  size: 'sm',
-                })}>
-                Tanárok
-              </Link>
-              <LoginLink
+              {/* <LoginLink
                 className={buttonVariants({
                   variant: 'ghost',
                   size: 'sm',
                 })}>
                 Bejelentkezés
-              </LoginLink>
-              <RegisterLink
+              </LoginLink> */}
+
+              {/* <RegisterLink
                 className={buttonVariants({
+                  variant: 'warning',
                   size: 'sm',
                 })}>
-                Hirdetni akarok{' '}
+                Tanítani szeretnék{' '}
                 <ArrowRight className='ml-1.5 h-5 w-5' />
-              </RegisterLink>
+              </RegisterLink> */}
+              <Link
+                href='/tanaroknak'
+                className={buttonVariants({
+                  variant: 'warning',
+                  size: 'sm'
+                })}>
+                Tanítani szeretnék{' '}
+                <ArrowRight className='ml-1.5 h-5 w-5' />
+              </Link>
             </>
           </div>
         </div>
