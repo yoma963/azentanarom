@@ -9,15 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kinde-oss/kinde-auth-nextjs": "^2.3.6",
+    "@kinde-oss/kinde-auth-nextjs": "^2.3.8",
     "@material-tailwind/react": "^2.1.9",
     "@nextui-org/input": "^2.2.4",
     "@nextui-org/react": "^2.4.6",
     "@prisma/client": "^5.18.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@tailwindcss/typography": "github:tailwindcss/typography",
+    "@tanstack/react-query": "^5.55.4",
+    "@trpc/client": "^11.0.0-rc.502",
+    "@trpc/next": "^11.0.0-rc.502",
+    "@trpc/react-query": "^11.0.0-rc.502",
+    "@trpc/server": "^11.0.0-rc.502",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "lucide-react": "^0.407.0",
     "next": "14.2.4",
     "nextjs-simple-typewriter": "^5.2.2",
@@ -26,11 +32,13 @@
     "radix-ui": "^1.0.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-loading-skeleton": "^3.4.0",
     "stripe": "^16.8.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-typography": "^3.1.0",
-    "typewriter-effect": "^2.21.0"
+    "typewriter-effect": "^2.21.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

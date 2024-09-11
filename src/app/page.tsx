@@ -19,10 +19,10 @@ export default function Home() {
           <div className='max-w-6xl'>
             <div className='mt-8 flow-root lg:mt-0'>
               <Image
-                src='/female-teacher-school-isolated-woman-with-chalkboard.png'
+                src='/teacher.png'
                 alt='teacher'
-                width={600}
-                height={600}
+                width={1000}
+                height={1000}
                 quality={100}
                 className="mx-auto max-w-xs md:max-w-sm lg:max-w-lg"
               />
@@ -53,7 +53,7 @@ export default function Home() {
             {' '}
             magántanárt.
           </h1>
-          <p className='mt-5 md:flex-1 text-zinc-700 sm:text-lg'>
+          <p className='mt-5 md:flex-1 text-zinc-700 md:text-lg'>
             Quill allows you to have conversations with any
             PDF document. Simply upload your file and start
             asking questions right away.
@@ -141,7 +141,7 @@ export default function Home() {
         </div>
 
         {/* steps */}
-        <ol className='mt-8 mb-40 mx-8 space-y-4 pt-8 md:flex md:space-x-10 md:space-y-0'>
+        <ol className='mt-8 mb-32 mx-8 space-y-4 pt-8 md:flex md:space-x-10 md:space-y-0'>
           <li className='md:flex-1'>
             <div className="hidden md:block md:mb-4 max-w-lg">
               <Image
@@ -222,11 +222,50 @@ export default function Home() {
           </li>
         </ol>
       </div>
-      <div className='mx-auto pb-20 items-center md:px-0 px-6'>
+
+      {/* card */}
+      <div className='mx-auto items-center md:px-0 px-6 mb-28'>
         <div className="bg-purple-800 py-8 md:min-h-72 lg:min-h-80 rounded-2xl md:rounded-none grid gridx-col content-center">
           <h2 className="font-bold text-zinc-200 text-center text-3xl md:text-5xl lg:text-6xl">Az első benyomás nagyon fontos.</h2>
-          <h2 className="text-warning mb-2 lg:mb-3 font-bold text-center text-4xl md:text-6xl lg:text-7xl">Mi ebben segítünk!</h2>
-          <p className="text-center text-zinc-300 text-lg sm:text-lg md:text-xl">Nézd meg tanáraink rövid bemutatkozó videóját és válassz!</p>
+          <h2 className="text-warning my-2 md:my-3 font-extrabold text-center text-4xl md:text-6xl lg:text-7xl">Mi ebben segítünk!</h2>
+          <p className="text-center text-zinc-300 text-lg md:text-xl">Nézd meg tanáraink bemutatkozó videóját és válassz!</p>
+        </div>
+      </div>
+
+      {/* become a tutor */}
+      <div className="mx-auto pb-20 lg:pb-0 ">
+        <div className="lg:flex lg:mx-12 rounded-xl">
+          <div className="lg:flex-1">
+            <Image
+              src='/young-woman-teacher-sitting-school-desk-front-blackboard-classroom-checking-homework-students-looking-camera-happy-pleased-smiling.jpg'
+              alt='first step'
+              width={2000}
+              height={2000}
+              quality={100}
+              className='h-full object-cover'
+            />
+          </div>
+          <div className="bg-warning items-center px-8 py-10 lg:flex-1 lg:px-8 grid content-center lg:justify-self-center">
+            <h1 className="font-extrabold mb-5 text-zinc-800 text-4xl md:text-5xl lg:text-6xl">Become a tutor</h1>
+            <p className="text-zinc-700 lg:text-lg">Earn money sharing your expert knowledge with students. Sign up to start tutoring online with Preply.</p>
+            <ul className="grid list-disc my-5 px-7 gap-y-1">
+              <li className="font-bold text-zinc-800 text-2xl">Find new students</li>
+              <li className="font-bold text-zinc-800 text-2xl">Grow your business</li>
+              <li className="font-bold text-zinc-800 text-2xl">Get paid securely</li>
+            </ul>
+            <div className="mt-2">
+              <Link
+                href='/tanaroknak'
+                className={buttonVariants({
+                  variant: 'ghost',
+                  size: 'sm',
+                  className: 'text-zinc-800'
+                })}>
+                Tanítani szeretnék{' '}
+                <ArrowRight className='ml-1.5 h-5 w-5' />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </>

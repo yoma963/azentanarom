@@ -1,18 +1,22 @@
+'use client'
+
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
 import {
   LoginLink,
   RegisterLink,
-  getKindeServerSession,
-} from '@kinde-oss/kinde-auth-nextjs/server'
+} from '@kinde-oss/kinde-auth-nextjs'
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { ArrowRight } from 'lucide-react'
-//import UserAccountNav from './UserAccountNav'
+import UserAccountNav from './UserAccountNav'
 import MobileNav from './MobileNav'
+import { usePathname } from 'next/navigation'
 
-const Navbar = () => {
-  const { getUser } = getKindeServerSession()
-  const user = getUser()
+
+const Navbar = async () => {
+  //const { getUser } = getKindeServerSession()
+  //const user = await getUser()
 
   return (
     <nav className='sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all'>
@@ -24,44 +28,42 @@ const Navbar = () => {
             <span>azentanarom.hu</span>
           </Link>
 
-          <MobileNav isAuth={!user} />
+          {/* <MobileNav isAuth={!!user} /> */}
 
           <div className='hidden items-center space-x-4 sm:flex'>
-            <>
-              <Link
-                href='/tanaraink'
-                className={buttonVariants({
-                  variant: 'ghost',
-                  size: 'sm',
-                })}>
-                Tanáraink
-              </Link>
-              {/* <LoginLink
-                className={buttonVariants({
-                  variant: 'ghost',
-                  size: 'sm',
-                })}>
-                Bejelentkezés
-              </LoginLink> */}
+            <Link
+              href='/tanaraink'
+              className={buttonVariants({
+                variant: 'ghost',
+                size: 'sm',
+              })}>
+              Tanáraink
+            </Link>
+            <LoginLink
+              className={buttonVariants({
+                variant: 'ghost',
+                size: 'sm',
+              })}>
+              Bejelentkezés
+            </LoginLink>
 
-              {/* <RegisterLink
-                className={buttonVariants({
-                  variant: 'warning',
-                  size: 'sm',
-                })}>
-                Tanítani szeretnék{' '}
-                <ArrowRight className='ml-1.5 h-5 w-5' />
-              </RegisterLink> */}
-              <Link
-                href='/tanaroknak'
-                className={buttonVariants({
-                  variant: 'warning',
-                  size: 'sm'
-                })}>
-                Tanítani szeretnék{' '}
-                <ArrowRight className='ml-1.5 h-5 w-5' />
-              </Link>
-            </>
+            <RegisterLink
+              className={buttonVariants({
+                variant: 'warning',
+                size: 'sm',
+              })}>
+              Tanítani szeretnék{' '}
+              <ArrowRight className='ml-1.5 h-5 w-5' />
+            </RegisterLink>
+            <Link
+              href='/tanaroknak'
+              className={buttonVariants({
+                variant: 'warning',
+                size: 'sm'
+              })}>
+              Tanítani szeretnék{' '}
+              <ArrowRight className='ml-1.5 h-5 w-5' />
+            </Link>
           </div>
         </div>
       </MaxWidthWrapper>
