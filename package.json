@@ -26,6 +26,7 @@
     "date-fns": "^3.6.0",
     "lucide-react": "^0.407.0",
     "next": "14.2.4",
+    "next-extra": "^0.5.1",
     "nextjs-simple-typewriter": "^5.2.2",
     "node": "^22.4.0",
     "prisma": "^5.18.0",

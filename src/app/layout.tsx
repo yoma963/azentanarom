@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Providers from '@/components/Providers'
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { getUser } = getKindeServerSession()
+  const user = getUser()
   return (
     <html lang="en" className="light">
       <Providers>
@@ -26,7 +29,7 @@ export default function RootLayout({
             inter.className
           )
           }>
-          <Navbar />
+          <Navbar isAuth={!!user}/>
           {children}
         </body>
       </Providers>

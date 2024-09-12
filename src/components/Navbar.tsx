@@ -11,12 +11,15 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { ArrowRight } from 'lucide-react'
 import UserAccountNav from './UserAccountNav'
 import MobileNav from './MobileNav'
+import { headers } from 'next/headers';
+import { pathname } from 'next-extra/pathname';
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation'
 
 
-const Navbar = async () => {
-  //const { getUser } = getKindeServerSession()
-  //const user = await getUser()
+
+const Navbar = async ({ isAuth }: { isAuth: boolean }) => {
+  const pathname = usePathname()
 
   return (
     <nav className='sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all'>
@@ -28,7 +31,7 @@ const Navbar = async () => {
             <span>azentanarom.hu</span>
           </Link>
 
-          {/* <MobileNav isAuth={!!user} /> */}
+          <MobileNav isAuth={isAuth} />
 
           <div className='hidden items-center space-x-4 sm:flex'>
             <Link
@@ -39,31 +42,41 @@ const Navbar = async () => {
               })}>
               Tanáraink
             </Link>
-            <LoginLink
-              className={buttonVariants({
-                variant: 'ghost',
-                size: 'sm',
-              })}>
-              Bejelentkezés
-            </LoginLink>
+            {pathname === '/tanaroknak' ? (
+              <>
+                <LoginLink
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    size: 'sm',
+                  })}>
+                  Bejelentkezés
+                </LoginLink>
 
-            <RegisterLink
-              className={buttonVariants({
-                variant: 'warning',
-                size: 'sm',
-              })}>
-              Tanítani szeretnék{' '}
-              <ArrowRight className='ml-1.5 h-5 w-5' />
-            </RegisterLink>
-            <Link
-              href='/tanaroknak'
-              className={buttonVariants({
-                variant: 'warning',
-                size: 'sm'
-              })}>
-              Tanítani szeretnék{' '}
-              <ArrowRight className='ml-1.5 h-5 w-5' />
-            </Link>
+                <RegisterLink
+                  className={buttonVariants({
+                    variant: 'warning',
+                    size: 'sm',
+                  })}>
+                  Regisztráció{' '}
+                  <ArrowRight className='ml-1.5 h-5 w-5' />
+                </RegisterLink>
+              </>
+
+            ) : (
+              <>
+                <Link
+                  href='/tanaroknak'
+                  className={buttonVariants({
+                    variant: 'warning',
+                    size: 'sm'
+                  })}>
+                  Tanítani szeretnék{' '}
+                  <ArrowRight className='ml-1.5 h-5 w-5' />
+                </Link>
+              </>
+            )}
+
+                  
           </div>
         </div>
       </MaxWidthWrapper>
