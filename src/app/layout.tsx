@@ -29,7 +29,7 @@ export default function RootLayout({
             inter.className
           )
           }>
-          <Navbar isAuth={!!user}/>
+          <Navbar user={user}/>
           {children}
         </body>
       </Providers>

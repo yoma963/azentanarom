@@ -18,7 +18,7 @@ import { usePathname } from 'next/navigation'
 
 
 
-const Navbar = async ({ isAuth }: { isAuth: boolean }) => {
+const Navbar = async ({ user }: { user: object }) => {
   const pathname = usePathname()
 
   return (
@@ -31,7 +31,7 @@ const Navbar = async ({ isAuth }: { isAuth: boolean }) => {
             <span>azentanarom.hu</span>
           </Link>
 
-          <MobileNav isAuth={isAuth} />
+          <MobileNav isAuth={!!user} />
 
           <div className='hidden items-center space-x-4 sm:flex'>
             <Link
@@ -76,7 +76,7 @@ const Navbar = async ({ isAuth }: { isAuth: boolean }) => {
               </>
             )}
 
-                  
+
           </div>
         </div>
       </MaxWidthWrapper>
