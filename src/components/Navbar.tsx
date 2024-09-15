@@ -33,6 +33,14 @@ const Navbar = async ({ user }: { user: object }) => {
 
           <MobileNav isAuth={!!user} />
 
+          {/* {!!user ? (
+            <>
+
+            </>
+          ) : (
+
+          )} */}
+
           <div className='hidden items-center space-x-4 sm:flex'>
             <Link
               href='/tanaraink'

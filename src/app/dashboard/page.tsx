@@ -10,11 +10,15 @@ const Page = async () => {
 
   if (!user || !user.id) redirect('/auth-callback?origin=dashboard')
 
-  //if(!dbUser) redirect('/auth-callback?origin=dashboard')
+  const dbUser = await db.user.findFirst({
+    where: {
+      id: user.id
+    }
+  })
 
-  return (
-    <div>{user.email}</div> //This is to test to see that it's working
-  );
+  if(!dbUser) redirect('/auth-callback?origin=dashboard')
+
+  return <Dashboard />
 }
 
 export default Page
