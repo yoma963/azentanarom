@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
@@ -12,14 +10,14 @@ import { ArrowRight } from 'lucide-react'
 import UserAccountNav from './UserAccountNav'
 import MobileNav from './MobileNav'
 import { headers } from 'next/headers';
-import { pathname } from 'next-extra/pathname';
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation'
+import ForTeachersNav from './ForTeachersNav'
 
 
+const Navbar = async () => {
 
-const Navbar = async ({ user }: { user: object }) => {
-  const pathname = usePathname()
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
 
   return (
     <nav className='sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all'>
@@ -33,14 +31,6 @@ const Navbar = async ({ user }: { user: object }) => {
 
           <MobileNav isAuth={!!user} />
 
-          {/* {!!user ? (
-            <>
-
-            </>
-          ) : (
-
-          )} */}
-
           <div className='hidden items-center space-x-4 sm:flex'>
             <Link
               href='/tanaraink'
@@ -50,41 +40,16 @@ const Navbar = async ({ user }: { user: object }) => {
               })}>
               Tanáraink
             </Link>
-            {pathname === '/tanaroknak' ? (
-              <>
-                <LoginLink
-                  className={buttonVariants({
-                    variant: 'ghost',
-                    size: 'sm',
-                  })}>
-                  Bejelentkezés
-                </LoginLink>
-
-                <RegisterLink
-                  className={buttonVariants({
-                    variant: 'warning',
-                    size: 'sm',
-                  })}>
-                  Regisztráció{' '}
-                  <ArrowRight className='ml-1.5 h-5 w-5' />
-                </RegisterLink>
-              </>
-
-            ) : (
-              <>
-                <Link
-                  href='/tanaroknak'
-                  className={buttonVariants({
-                    variant: 'warning',
-                    size: 'sm'
-                  })}>
-                  Tanítani szeretnék{' '}
-                  <ArrowRight className='ml-1.5 h-5 w-5' />
-                </Link>
-              </>
-            )}
-
-
+            <ForTeachersNav isAuth={!!user} />
+            <UserAccountNav
+              name={
+                !user.given_name || !user.family_name
+                  ? 'Your Account'
+                  : `${user.given_name} ${user.family_name}`
+              }
+              email={user.email ?? ''}
+              imageUrl={user.picture ?? ''}
+            />
           </div>
         </div>
       </MaxWidthWrapper>

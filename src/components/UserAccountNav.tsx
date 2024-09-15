@@ -1,5 +1,3 @@
-'use client'
-
 import { getUserSubscriptionPlan } from '@/lib/stripe'
 import {
   DropdownMenu,

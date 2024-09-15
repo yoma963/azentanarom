@@ -18,8 +18,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { getUser } = getKindeServerSession()
-  const user = getUser()
   return (
     <html lang="en" className="light">
       <Providers>
@@ -29,7 +27,7 @@ export default function RootLayout({
             inter.className
           )
           }>
-          <Navbar user={user}/>
+          <Navbar />
           {children}
         </body>
       </Providers>

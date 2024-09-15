@@ -47,6 +47,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
         <h1 className='mb-3 font-bold text-5xl text-gray-900'>
           Hirdetésem
         </h1>
+        
 
       </div>
 
