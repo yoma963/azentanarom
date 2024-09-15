@@ -41,7 +41,8 @@ const Navbar = async () => {
               Tanáraink
             </Link>
             <ForTeachersNav isAuth={!!user} />
-            <UserAccountNav
+            {user ? (
+              <UserAccountNav
               name={
                 !user.given_name || !user.family_name
                   ? 'Your Account'
@@ -50,6 +51,8 @@ const Navbar = async () => {
               email={user.email ?? ''}
               imageUrl={user.picture ?? ''}
             />
+            ) : (null)}
+            
           </div>
         </div>
       </MaxWidthWrapper>
