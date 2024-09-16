@@ -18,7 +18,8 @@ const Page = async () => {
 
   if(!dbUser) redirect('/auth-callback?origin=dashboard')
 
-  return <Dashboard />
+  const subscriptionPlan = await getUserSubscriptionPlan()
+  return <Dashboard subscriptionPlan={subscriptionPlan} />
 }
 
 export default Page
