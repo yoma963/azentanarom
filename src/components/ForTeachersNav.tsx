@@ -11,8 +11,8 @@ const ForTeachersNav = ({ isAuth }: { isAuth: boolean }) => {
   const pathname = usePathname()
 
   return (
-    <div>
-      {pathname === '/tanaroknak' ? (
+    <div className="space-x-4 ">
+      {(pathname === '/tanaroknak') && !isAuth ? (
         <>
           <LoginLink
             className={buttonVariants({
@@ -31,17 +31,34 @@ const ForTeachersNav = ({ isAuth }: { isAuth: boolean }) => {
             <ArrowRight className='ml-1.5 h-5 w-5' />
           </RegisterLink>
         </>
-
       ) : (
-        <Link
-          href='/tanaroknak'
-          className={buttonVariants({
-            variant: 'warning',
-            size: 'sm'
-          })}>
-          Tanítani szeretnék{' '}
-          <ArrowRight className='ml-1.5 h-5 w-5' />
-        </Link>
+        <>
+          {!isAuth ? (
+            <>
+              <Link
+                href='/tanaroknak'
+                className={buttonVariants({
+                  variant: 'warning',
+                  size: 'sm'
+                })}>
+                Tanítani szeretnék{' '}
+                <ArrowRight className='ml-1.5 h-5 w-5' />
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href='/dashboard'
+                className={buttonVariants({
+                  variant: 'default',
+                  size: 'sm',
+                })}>
+                Hirdetéskezelő{' '}
+                <ArrowRight className='ml-1.5 h-5 w-5' />
+              </Link>
+            </>
+          )}
+        </>
       )}
     </div>
   )
