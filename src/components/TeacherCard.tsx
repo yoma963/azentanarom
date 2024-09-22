@@ -58,7 +58,7 @@ const TeacherCard: React.FC<teachercardprops> = ({ value, num }) => {
       <div className="text-sm flex items-center">
         <p className="line-clamp-3">{value.intro}</p>
       </div>
-      <div className="">
+      {/* <div className="">
         <Link
           className={buttonVariants({
             size: 'sm',
@@ -68,7 +68,7 @@ const TeacherCard: React.FC<teachercardprops> = ({ value, num }) => {
           target='_blank'>
           Keresés
         </Link>
-      </div>
+      </div> */}
     </div>
   )
 }
