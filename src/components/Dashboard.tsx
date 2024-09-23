@@ -128,7 +128,8 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
           isOpen={isOpen}
           onOpenChange={onOpenChange}
           placement='top-center'
-          size='lg'>
+          size='lg'
+          scrollBehavior="inside">
           <ModalContent>
             {(onClose) => (
               <>
