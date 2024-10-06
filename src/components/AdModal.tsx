@@ -3,7 +3,11 @@
 import { Autocomplete, AutocompleteItem, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea } from "@nextui-org/react"
 import { Button, buttonVariants } from './ui/button'
 import { Mail, Phone } from "lucide-react"
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { createBrowserClient } from '@supabase/ssr'
+import { AvatarInput } from "./AvatarInput";
+import { KindeUserBase } from "@kinde-oss/kinde-auth-nextjs/types";
+
 
 const subjects = [
   { label: "Matematika", value: "matematika", description: "Az alapvető számítási és logikai készségeket fejleszti" },
@@ -22,21 +26,22 @@ const subjects = [
 
 interface AdProps {
   isOpen: boolean,
-  onOpenChange: () => void
+  onOpenChange: () => void,
+  user: KindeUserBase | null
 }
 
 const adModal: React.FC<AdProps> = (props) => {
 
+  const [avatar_url, setAvatarUrl] = useState<string | null>(null)
+
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
 
     const file = files[0];
 
-    // use the file
-    console.log(file.name);
   }
 
   function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
@@ -45,6 +50,7 @@ const adModal: React.FC<AdProps> = (props) => {
 
     inputRef.current.click();
   }
+
   return (
     <>
       <Modal
@@ -62,28 +68,7 @@ const adModal: React.FC<AdProps> = (props) => {
               </ModalHeader>
               <ModalBody className='gap-5'>
                 <div className='text-center'>
-                  <img
-                    src="https://tecdn.b-cdn.net/img/new/avatars/5.webp"
-                    className="mx-auto mb-4 w-32 rounded-lg"
-                    alt="Avatar" />
-
-                  <Button
-                    onClick={handleButtonClick}
-                    className={buttonVariants({
-                      variant: 'warning',
-                      size: 'sm'
-                    })}
-                  >
-                    Profilkép feltöltése
-                  </Button>
-                  <input
-                    type="file"
-                    ref={inputRef}
-                    accept='image/'
-                    className=''
-                    hidden
-                    onChange={handleFileUpload}
-                  />
+                  <AvatarInput />
                 </div>
 
                 <Input

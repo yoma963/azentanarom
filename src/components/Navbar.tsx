@@ -31,7 +31,7 @@ const Navbar = async () => {
 
           <MobileNav isAuth={!!user} />
 
-          <div className='hidden items-center space-x-4 sm:flex'>
+          <div className='max-sm:hidden items-center space-x-4 sm:flex'>
             <Link
               href='/tanaraink'
               className={buttonVariants({

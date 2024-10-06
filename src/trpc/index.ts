@@ -37,6 +37,19 @@ export const appRouter = router({
       },
     })
   }),
+  getImg: privateProcedure
+    .input(z.object({ key: z.string() }))
+    .mutation(async({ctx, input}) => {
+      const {userId} = ctx
+      const image = await db.image.findFirst({
+        where: {
+          key: input.key,
+          userId,
+        },
+      })
+      if(!image) throw new TRPCError({code: "NOT_FOUND"})
+      return image
+    }),
   deleteAd: privateProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {

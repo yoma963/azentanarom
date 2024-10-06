@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Providers from '@/components/Providers'
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "@uploadthing/react/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +31,7 @@ export default function RootLayout({
           )
           }>
           <Navbar />
+          <ToastContainer />
           {children}
         </body>
       </Providers>

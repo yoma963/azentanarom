@@ -5,12 +5,8 @@ import {
   Ghost,
   Loader2,
   MessageSquare,
-  Phone,
   Plus,
   Trash,
-  Mail,
-  DollarSign,
-  Clock
 } from 'lucide-react'
 import Skeleton from 'react-loading-skeleton'
 import Link from 'next/link'
@@ -19,29 +15,18 @@ import { Button, buttonVariants } from './ui/button'
 import { useRef, useState } from 'react'
 import { getUserSubscriptionPlan } from '@/lib/stripe'
 import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
   useDisclosure,
-  ModalFooter
 } from '@nextui-org/modal'
-import { Input } from '@nextui-org/input'
 import React from 'react'
-import {
-  Autocomplete,
-  AutocompleteSection,
-  AutocompleteItem
-} from "@nextui-org/autocomplete";
-import { Textarea } from "@nextui-org/react";
 import AdModal from './AdModal'
-
+import { KindeUser, KindeUserBase } from "@kinde-oss/kinde-auth-nextjs/types";
 
 interface PageProps {
   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
+  user: KindeUserBase | null
 }
 
-const Dashboard = ({ subscriptionPlan }: PageProps) => {
+const Dashboard = ({ subscriptionPlan, user }: PageProps) => {
   const [currentlyDeletingAd, setCurrentlyDeletingAd] =
     useState<string | null>(null)
 
@@ -90,7 +75,7 @@ const Dashboard = ({ subscriptionPlan }: PageProps) => {
         >
           Létrehozás
         </Button>
-        <AdModal isOpen={isOpen} onOpenChange={onOpenChange} />
+        <AdModal isOpen={isOpen} onOpenChange={onOpenChange} user={user} />
       </div>
 
       {/* display all user files */}
