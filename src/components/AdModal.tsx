@@ -5,8 +5,9 @@ import { Button, buttonVariants } from './ui/button'
 import { Mail, Phone } from "lucide-react"
 import { useRef, useState } from "react";
 import { createBrowserClient } from '@supabase/ssr'
-import { AvatarInput } from "./AvatarInput";
+import AvatarInput from "./AvatarInput";
 import { KindeUserBase } from "@kinde-oss/kinde-auth-nextjs/types";
+import { trpc } from "@/app/_trpc/client";
 
 
 const subjects = [

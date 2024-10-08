@@ -9,18 +9,12 @@ import { trpc } from '@/app/_trpc/client';
 
 export function AvatarInput() {
 
-  const {} = trpc.getImg.useMutation({
-    onSuccess: () => {
-      
-    },
-    retry: true,
-    retryDelay: 500
-  })
+  const [avatar_url, setAvatarUrl] = useState<string | undefined>("https://tecdn.b-cdn.net/img/new/avatars/5.webp")
 
   return (
     <div>
       <img
-        src="https://tecdn.b-cdn.net/img/new/avatars/5.webp"
+        src={avatar_url}
         className="mx-auto mb-4 w-32 rounded-lg"
         alt="Avatar" />
       <UploadButton
@@ -56,6 +50,8 @@ export function AvatarInput() {
             })
           }
 
+          setAvatarUrl(fileResponse.url)
+
 
         }}
         onUploadError={(error: Error) => {
@@ -73,3 +69,5 @@ export function AvatarInput() {
 
   );
 }
+
+export default AvatarInput
