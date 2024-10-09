@@ -1,11 +1,8 @@
 'use client'
 import React, { useState } from 'react'
-import { Button, buttonVariants } from './ui/button'
-import { OurFileRouter } from "../app/api/uploadthing/core";
 
 import { UploadButton } from "@/utils/uploadthing";
 import { toast } from 'react-toastify';
-import { trpc } from '@/app/_trpc/client';
 
 export function AvatarInput() {
 
