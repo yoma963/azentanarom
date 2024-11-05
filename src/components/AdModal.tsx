@@ -32,7 +32,7 @@ interface AdProps {
   user: KindeUserBase | null
 }
 
-const adModal: React.FC<AdProps> = (props) => {
+const AdModal: React.FC<AdProps> = (props) => {
 
   const [avatar_url, setAvatarUrl] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -49,25 +49,38 @@ const adModal: React.FC<AdProps> = (props) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { mutate: createAd, isPending: isCreating } = trpc.ad.create.useMutation({
+    onSuccess: () => {
+      props.onOpenChange();
+    },
+    onError: (error) => {
+      console.error(error);
+    }
+  });
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setIsLoading(true) // Set loading to true when the request starts
+    event.preventDefault();
+    setIsLoading(true);
 
     try {
-      const formData = new FormData(event.currentTarget)
-      const response = await fetch('/api/submit', {
-        method: 'POST',
-        body: formData,
-      })
+      const formData = new FormData(event.currentTarget);
+      
+      const adData = {
+        email: formData.get('email') as string,
+        tel: formData.get('tel') as string,
+        subjects: formData.get('subjects') as string,
+        intro: formData.get('intro') as string,
+        time: formData.get('time') as string,
+        price: formData.get('price') as string,
+        avatar_url: avatar_url
+      };
 
-      // Handle response if necessary
-      const data = await response.json()
-      // ...
+      createAd(adData);
+      
     } catch (error) {
-      // Handle error if necessary
-      console.error(error)
+      console.error(error);
     } finally {
-      setIsLoading(false) // Set loading to false when the request completes
+      setIsLoading(false);
     }
   }
 
@@ -168,4 +181,4 @@ const adModal: React.FC<AdProps> = (props) => {
   )
 }
 
-export default adModal
+export default AdModal

@@ -37,9 +37,13 @@ const page = () => {
   return (
     <div className="sm:px-5 mt-10">
       <div className="mx-auto max-w-4xl sm:p-5">
-        {Teachers.map((val, indx) => {
-          return <TeacherCard key={indx} value={val} num={indx} />;
-        })}
+        {Teachers.map((teacher, index) => (
+          <TeacherCard 
+            key={teacher.name}
+            value={teacher}
+            num={index}
+          />
+        ))}
       </div>
     </div>
   );

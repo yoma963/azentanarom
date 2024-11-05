@@ -28,6 +28,27 @@ export const appRouter = router({
 
     return { success: true }
   }),
+  ad: router({
+    create: privateProcedure
+      .input(z.object({
+        email: z.string(),
+        tel: z.string(),
+        subjects: z.string(),
+        intro: z.string(),
+        time: z.string(),
+        price: z.string(),
+        avatar_url: z.string().nullable(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const { userId } = ctx
+        return await db.ad.create({
+          data: {
+            ...input,
+            userId,
+          },
+        })
+      }),
+  }),
   getUserAd: privateProcedure.query(async ({ ctx }) => {
     const { userId } = ctx
 
