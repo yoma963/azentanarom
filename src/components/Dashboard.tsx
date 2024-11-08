@@ -3,9 +3,6 @@
 import { trpc } from '@/app/_trpc/client'
 import {
   Ghost,
-  Loader2,
-  MessageSquare,
-  Plus,
   Trash,
 } from 'lucide-react'
 import Skeleton from 'react-loading-skeleton'
@@ -48,18 +45,7 @@ const Dashboard = ({ subscriptionPlan, user }: PageProps) => {
       },
     })
 
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["Tantárgyaim: "]));
-
-  const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
-    [selectedKeys]
-  );
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileUploaded = e.currentTarget.value; // ADDED
-  };
 
   return (
     <main className='mx-auto max-w-7xl px-4 md:p-10'>
@@ -83,21 +69,23 @@ const Dashboard = ({ subscriptionPlan, user }: PageProps) => {
           <Skeleton height={200} />
         </div>
       ) : ads ? (
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <AdCard
-            key={ads.id}
-            ad={{
-              id: ads.id,
-              description: ads.intro,
-              price: parseInt(ads.price[0]),
-              createdAt: new Date(),
-              name: user?.given_name || 'Névtelen',
-              location: 'Magyarország',
-              subjects: ads.subjects.split(',').map(subject => subject.trim())
-            }}
-            onDelete={() => deleteAd({ id: ads.id })}
-            isDeleting={currentlyDeletingAd === ads.id}
-          />
+        <div className="sm:px-5 mt-10">
+          <div className="mx-auto max-w-4xl sm:p-5">
+            <AdCard
+              key={ads.id}
+              ad={{
+                id: ads.id,
+                description: ads.intro,
+                price: parseInt(ads.price[0]),
+                createdAt: new Date(),
+                name: user?.given_name || 'Névtelen',
+                location: 'Magyarország',
+                subjects: ads.subjects.split(',').map(subject => subject.trim())
+              }}
+              onDelete={() => deleteAd({ id: ads.id })}
+              isDeleting={currentlyDeletingAd === ads.id}
+            />
+          </div>
         </div>
       ) : (
         <div className='mt-16 flex flex-col items-center gap-2'>
