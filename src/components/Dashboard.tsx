@@ -75,6 +75,7 @@ const Dashboard = ({ subscriptionPlan, user }: PageProps) => {
               key={ads.id}
               ad={{
                 id: ads.id,
+                userId: ads.userId,
                 description: ads.intro,
                 price: parseInt(ads.price[0]),
                 createdAt: new Date(),

@@ -1,30 +1,44 @@
+'use client'
+
 import { FC } from 'react'
 import { Button } from './ui/button'
 import { Clock, GraduationCap, Loader2, Trash } from 'lucide-react'
 import Image from "next/image";
+import { db } from "@/db/index";
+import { deleteAd } from '@/actions/ad-actions'
 
 interface AdCardProps {
   ad: {
     id: string
+    userId: string
     description: string
     price: number
     createdAt: Date
     name: string
     location: string
     subjects: string[]
-    image?: string
+    imageUrl?: string
   }
   onDelete: () => void
   isDeleting: boolean
 }
 
 const AdCard: FC<AdCardProps> = ({ ad, onDelete, isDeleting }) => {
+  const handleDelete = async () => {
+    try {
+      await deleteAd(ad.userId);
+      await onDelete();
+    } catch (error) {
+      console.error('Hiba a kép törlésekor:', error);
+    }
+  };
+
   return (
     <div className="w-full h-full sm:my-5 p-5 sm:rounded-lg sm:hover:border-zinc-600 border-zinc-200 border-y-1 sm:border-2 bg-white flex flex-col gap-2">
       <div className="flex flex-row gap-2">
         <div className="fw-28 sm:w-40 min-w-28">
           <Image
-            src={ad.image ?? '/default-avatar.jpg'}
+            src={ad.imageUrl ?? '/default-avatar.jpg'}
             alt='teacher profile picture'
             width={2000}
             height={2000}
@@ -53,7 +67,7 @@ const AdCard: FC<AdCardProps> = ({ ad, onDelete, isDeleting }) => {
         <p className="line-clamp-3">{ad.description}</p>
       </div>
       <Button
-        onClick={onDelete}
+        onClick={handleDelete}
         size="sm"
         variant="destructive"
         disabled={isDeleting}>
