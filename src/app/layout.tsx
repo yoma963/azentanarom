@@ -8,6 +8,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "@uploadthing/react/styles.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

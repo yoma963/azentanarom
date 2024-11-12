@@ -45,6 +45,6 @@ export async function deleteAd(adUserId: string) {
     return { success: true };
   } catch (error) {
     console.error('Hiba a törlés során:', error);
-    throw error;
+    return { success: false };
   }
 } 
